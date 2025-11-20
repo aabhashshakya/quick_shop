@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../../../core/app_config/session_notifier.dart';
 import '../../data/model/product.dart';
 import '../../data/products_repository.dart';
 
@@ -8,6 +9,25 @@ class ProductListViewModel extends ChangeNotifier {
 
   ProductListViewModel() {
     loadProducts();
+    FlutterSessionNotifier().addListener(_onSessionEvent);
+  }
+
+  void _onSessionEvent() {
+    final event = FlutterSessionNotifier().lastEvent;
+
+    if (event == SessionEventType.login) {
+      //login -> reload products
+      loadProducts();
+    } else if (event == SessionEventType.logout) {
+      _onLogout();
+    }
+  }
+
+  void _onLogout() {
+    products = [];
+    error = null;
+    isLoading = false;
+    notifyListeners();
   }
 
   bool isLoading = false;
@@ -36,5 +56,11 @@ class ProductListViewModel extends ChangeNotifier {
 
     isLoading = false;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    FlutterSessionNotifier().removeListener(_onSessionEvent);
+    super.dispose();
   }
 }

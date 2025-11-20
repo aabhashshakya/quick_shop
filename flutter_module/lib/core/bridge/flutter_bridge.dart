@@ -4,8 +4,10 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_module/core/cache/db/product_db.dart';
 
 import '../app_config/app_config.dart';
+import '../app_config/session_notifier.dart';
 import '../provider/app_config_provider.dart';
 
 class FlutterBridge {
@@ -39,13 +41,16 @@ class FlutterBridge {
   }
 
   ///when user logs out
-  static Future<bool> logout() async {
+  static Future<void> logout() async {
     try {
       final result = await _channel.invokeMethod<bool>('logout');
-      return result ?? true;
+      if (result == true) {
+        //clear cache when user logs out
+        await ProductDatabase().clearCache();
+        FlutterSessionNotifier().notifyLogout();
+      }
     } catch (e) {
       debugPrint("Failed to logout");
-      return false;
     }
   }
 

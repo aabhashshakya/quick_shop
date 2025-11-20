@@ -4,6 +4,7 @@ import 'package:flutter_module/core/bridge/flutter_bridge.dart';
 
 import '../app_config/app_config.dart';
 import '../app_config/app_theme.dart';
+import '../app_config/session_notifier.dart';
 
 class AppConfigProvider extends ChangeNotifier {
   AppConfig? _config;
@@ -18,6 +19,7 @@ class AppConfigProvider extends ChangeNotifier {
     if (newConfig.shouldCacheUUID) {
       var success = await FlutterBridge.cacheUUID(newConfig.uuid);
       if (success) {
+        FlutterSessionNotifier().notifyLogin();
         _config = newConfig;
         notifyListeners();
       }

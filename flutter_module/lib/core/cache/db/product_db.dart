@@ -82,6 +82,7 @@ class ProductDatabase {
         .toList();
   }
 
+
   Future<void> clearCache() async {
     final db = await database;
     await db.delete('products');
