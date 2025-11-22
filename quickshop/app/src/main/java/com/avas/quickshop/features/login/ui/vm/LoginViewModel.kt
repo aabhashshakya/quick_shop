@@ -56,13 +56,11 @@ class LoginViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
-
             val generatedUUID = UUID.randomUUID().toString()
+            onSuccess(generatedUUID)
 
             _state.update {
                 it.copy(
-                    isLoading = false,
                     loginSuccess = true,
                     username = "",
                     password = "",
@@ -70,7 +68,6 @@ class LoginViewModel @Inject constructor(
                     passwordError = null
                 )
             }
-            onSuccess(generatedUUID)
         }
     }
 }

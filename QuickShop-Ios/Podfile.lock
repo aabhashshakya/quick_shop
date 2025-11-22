@@ -1,0 +1,52 @@
+PODS:
+  - Flutter (1.0.0)
+  - FlutterPluginRegistrant (0.0.1):
+    - Flutter
+    - fluttertoast
+    - path_provider_foundation
+    - sqflite_darwin
+  - fluttertoast (0.0.2):
+    - Flutter
+  - Kingfisher (8.6.2)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - Flutter (from `../flutter_module/.ios/Flutter`)
+  - FlutterPluginRegistrant (from `../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
+  - fluttertoast (from `../flutter_module/.ios/.symlinks/plugins/fluttertoast/ios`)
+  - Kingfisher
+  - path_provider_foundation (from `../flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin`)
+  - sqflite_darwin (from `../flutter_module/.ios/.symlinks/plugins/sqflite_darwin/darwin`)
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: "../flutter_module/.ios/Flutter"
+  FlutterPluginRegistrant:
+    :path: "../flutter_module/.ios/Flutter/FlutterPluginRegistrant"
+  fluttertoast:
+    :path: "../flutter_module/.ios/.symlinks/plugins/fluttertoast/ios"
+  path_provider_foundation:
+    :path: "../flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin"
+  sqflite_darwin:
+    :path: "../flutter_module/.ios/.symlinks/plugins/sqflite_darwin/darwin"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  FlutterPluginRegistrant: f8b7c39c0fd227b04bce34250c4420525e761217
+  fluttertoast: 21eecd6935e7064cc1fcb733a4c5a428f3f24f0f
+  Kingfisher: 23d18f54677d973b713e54ce6a8f5eef6e7056ba
+  path_provider_foundation: 0b743cbb62d8e47eab856f09262bb8c1ddcfe6ba
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
+
+PODFILE CHECKSUM: 8965959451a89f485c73042ce7e16d36af8f1d30
+
+COCOAPODS: 1.16.2

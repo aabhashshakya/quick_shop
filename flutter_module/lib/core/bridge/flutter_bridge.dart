@@ -15,19 +15,30 @@ class FlutterBridge {
 
   static void setup(AppConfigProvider configProvider) {
     _channel.setMethodCallHandler((call) async {
-      switch (call.method) {
-        case 'setAppConfig':
-          final jsonString = call.arguments as String;
-          final config = AppConfig.fromJson(jsonDecode(jsonString));
-          configProvider.updateConfig(config);
-          return null;
-        default:
-          throw MissingPluginException(
-            'Method ${call.method} not implemented.',
-          );
+      try {
+        debugPrint("Flutter received method: ${call.method}");
+        debugPrint("Arguments: ${call.arguments}");
+
+        switch (call.method) {
+          case 'setAppConfig':
+            final jsonString = call.arguments as String;
+            final config = AppConfig.fromJson(jsonDecode(jsonString));
+            configProvider.updateConfig(config);
+            debugPrint("AppConfig updated in Flutter: ${config.toJson()}");
+            return null;
+          default:
+            debugPrint("Method ${call.method} not implemented in Flutter.");
+            throw MissingPluginException(
+              'Method ${call.method} not implemented.',
+            );
+        }
+      } catch (e, stack) {
+        debugPrint("Error handling method call ${call.method}: ${e.toString()}");
+        rethrow; // optional: rethrow if you want Flutter to see the exception
       }
     });
   }
+
 
   ///send selected product back to native Android
   static Future<bool> pay(String product) async {
@@ -35,7 +46,7 @@ class FlutterBridge {
       final result = await _channel.invokeMethod<bool>('pay', product);
       return result ?? true;
     } catch (e) {
-      debugPrint("Failed to send product to native: $e");
+      debugPrint("Failed to send product to native: ${e.toString()}");
       return false;
     }
   }
@@ -50,7 +61,7 @@ class FlutterBridge {
         FlutterSessionNotifier().notifyLogout();
       }
     } catch (e) {
-      debugPrint("Failed to logout");
+      debugPrint("Failed to logout: ${e.toString()}");
     }
   }
 
@@ -60,7 +71,7 @@ class FlutterBridge {
       final result = await _channel.invokeMethod<bool>('cacheUUID', uuid);
       return result ?? true;
     } catch (e) {
-      debugPrint("Failed to cache UUID");
+      debugPrint("Failed to cache UUID: ${e.toString()}");
       return false;
     }
   }

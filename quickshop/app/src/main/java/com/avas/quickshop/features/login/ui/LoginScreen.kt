@@ -12,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -65,11 +66,12 @@ fun LoginScreen(
 
             // Username
             OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(0.9f),
                 value = state.username,
                 onValueChange = viewModel::onUsernameChanged,
-                label = { Text("Username") },
                 isError = state.usernameError != null,
                 singleLine = true,
+                placeholder = { Text("Username", color = Color.Gray) },
                 shape = RoundedCornerShape(10.dp),
                 textStyle = MaterialTheme.typography.bodyLarge,
                 colors = OutlinedTextFieldDefaults.colors(
@@ -90,10 +92,11 @@ fun LoginScreen(
 
             // Password
             OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(0.9f),
                 value = state.password,
                 onValueChange = viewModel::onPasswordChanged,
-                label = { Text("Password") },
                 isError = state.passwordError != null,
+                placeholder = { Text("Password", color = Color.Gray) }, // <-- add this
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 singleLine = true,
@@ -126,18 +129,12 @@ fun LoginScreen(
                     containerColor = MaterialTheme.colorScheme.primary
                 )
             ) {
-                if (state.isLoading) {
-                    CircularProgressIndicator(
-                        color = MaterialTheme.colorScheme.background,
-                        strokeWidth = 2.dp,
-                        modifier = Modifier.size(24.dp)
-                    )
-                } else {
-                    Text(
-                        text = "Login",
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
-                }
+
+                Text(
+                    text = "Login",
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+
             }
 
             Spacer(modifier = Modifier.height(LocalSpacing.current.medium.dp))

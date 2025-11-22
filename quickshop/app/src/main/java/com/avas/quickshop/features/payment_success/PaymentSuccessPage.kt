@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.avas.quickshop.flutter_utils.Product
+import com.avas.quickshop.ui.theme.AppSpacing
+import com.avas.quickshop.ui.theme.LocalSpacing
 
 /// Created by Aabhash Shakya on 19/11/2025
 @Composable
@@ -51,24 +53,29 @@ fun PaymentSuccessScreen(
             Text(
                 text = "Payment Successful!",
                 style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            AsyncImage(
-                model = product.image,
+            Spacer(
+                modifier = Modifier.height(LocalSpacing.current.large.dp))
+
+
+                        AsyncImage (
+                        model = product.image,
                 contentDescription = product.title,
                 modifier = Modifier
                     .size(140.dp)
                     .clip(RoundedCornerShape(16.dp))
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
+            Spacer(
+                modifier = Modifier.height(LocalSpacing.current.large.dp))
             Text(
                 text = product.title,
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center
             )
+            Spacer(
+                modifier = Modifier.height(LocalSpacing.current.small.dp))
 
             Text(
                 text = "$ ${product.price}",
@@ -76,8 +83,9 @@ fun PaymentSuccessScreen(
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
                 ),
-                modifier = Modifier.padding(top = 6.dp, bottom = 30.dp)
             )
+            Spacer(
+                modifier = Modifier.height(LocalSpacing.current.large.dp))
 
             Button(
                 onClick = onContinueShopping,
