@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ATSApplicationFontsPath</key>
+	<string>.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartVmService._tcp</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>montserrat_bold.ttf</string>
+		<string>montserrat_regular.ttf</string>
+		<string>mulish_bold.ttf</string>
+		<string>mulish_regular.ttf</string>
+		<string>mulish_semibold.ttf</string>
+		<string>montserrat_semi_bold.ttf</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>surface</string>
+		<key>UIImageName</key>
+		<string>launch_screen</string>
+		<key>UILaunchScreen</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>
